@@ -28,8 +28,7 @@ export class ClientService {
 
   GetClientList() {
     const Url: string = Endpoint.BaseApi + Endpoint.Client.GetAll;
-    return this.serviceProvider.Get(Url).
-      map((response) => this.clientMap.transFromJson(response));
+    return this.serviceProvider.Get(Url);
   }
 
   SaveClient(model: Client) {
@@ -43,8 +42,7 @@ export class ClientService {
       { name: 'client_id', value: ClientId.toString() }
     ];
 
-    return this.serviceProvider.Get(Url, params)
-      .map((response) => this.paymentMap.transFromJson(response));
+    return this.serviceProvider.Get(Url, params);
   }
 
   SavePayment(model: Payment) {

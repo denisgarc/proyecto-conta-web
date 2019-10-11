@@ -13,7 +13,7 @@ export class HttpProviderService {
   constructor(private http: HttpClient, private auth: SessionService,
     private erroMap: ErrorMapper) { }
 
-  public Get(endPoint: string, params?: Parameter[]) {
+  public Get(endPoint: string, params?: Parameter[]): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
       const Options = this.setHeaders();
       this.http.get(this.AddParameters(endPoint, params), Options)
