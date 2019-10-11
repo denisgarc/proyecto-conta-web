@@ -5,7 +5,7 @@ import { Endpoint } from 'src/config/endpoint';
 import { Parameter } from 'src/app/models/general/parameter.model';
 import { map, defaultIfEmpty, tap } from 'rxjs/operators';
 import { Branch } from 'src/app/models/Inventory/Branch';
-import { Observable, Observer } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,25 +13,26 @@ import { Observable, Observer } from 'rxjs';
 export class BranchService {
 
   constructor(private serviceProvider: HttpProviderService,
-    private branchMap: BranchMapper) { }
+    private mapper: BranchMapper) { }
 
   Get(): Observable<Array<Branch>> {
-    const Url: string = Endpoint.BaseApi + Endpoint.Branch.Get;
-    return this.serviceProvider.Get(Url).pipe(
-      map(response => this.branchMap.transFromJson(response))
-    );
+    return this.serviceProvider.Get(Endpoint.BaseApi + Endpoint.Branch.Get)
+      .pipe(
+        map(response => this.mapper.transFromJson(response))
+      );
   }
 
   GetById(id: number): Observable<Array<Branch>> {
-    const Url: string = Endpoint.BaseApi + Endpoint.Branch.GetById;
-    const param: Parameter[] = [{name: 'id', value: id.toString()}];
-    return this.serviceProvider.Get(Url, param).pipe(
-      map(response => this.branchMap.transFromJson(response))
-    );
+    const param: Parameter[] = [
+      { name: 'id', value: id.toString() }
+    ];
+    return this.serviceProvider.Get(Endpoint.BaseApi + Endpoint.Branch.GetById, param)
+      .pipe(
+        map(response => this.mapper.transFromJson(response))
+      );
   }
 
   Save(model: Branch) {
-    const Url: string = Endpoint.BaseApi + Endpoint.Branch.Save;
-    return this.serviceProvider.Post(Url, model);
+    return this.serviceProvider.Post(Endpoint.BaseApi + Endpoint.Branch.Save, model);
   }
 }

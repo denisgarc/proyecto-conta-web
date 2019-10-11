@@ -17,5 +17,29 @@ export class Endpoint {
         GetById: 'branch',
         Save: 'branch'
     };
-
+    static Brand = {
+        Get: 'brand',
+        GetById: 'brand',
+        Save: 'brand'
+    };
+    static Cardex = {
+        Get: 'cardex',
+        GetById: 'cardex',
+        Save: 'cardex'
+    };
+    static Color = {
+        Get: 'color',
+        GetById: 'color',
+        Save: 'color'
+    };
+    static Operation = {
+        Get: 'operation',
+        GetById: 'operation',
+        Save: 'operation'
+    };
+    static Product = {
+        Get: 'product',
+        GetById: 'product',
+        Save: 'product'
+    };
 }

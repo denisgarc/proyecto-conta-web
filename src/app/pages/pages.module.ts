@@ -32,6 +32,7 @@ import { BranchComponent } from './branch/branch.component';
 
 // Providers
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { BrandComponent } from './brand/brand.component';
 
 @NgModule({
     declarations: [
@@ -45,7 +46,8 @@ import { BsModalService } from 'ngx-bootstrap/modal';
         PromesasComponent,
         RxjsComponent,
         ClientPageComponent,
-        BranchComponent
+        BranchComponent,
+        BrandComponent
     ],
     exports: [
         DashboardComponent,
