@@ -10,7 +10,7 @@ import { PagesComponent } from './pages.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
-// import { TableModule } from 'primeng/table';
+import { TableModule } from 'primeng/table';
 
 // Rutas
 import { PAGES_ROUTES } from './pages.routes';
@@ -49,7 +49,8 @@ import { BranchComponent } from './branch/branch.component';
         PAGES_ROUTES,
         FormsModule,
         ChartsModule,
-        CommonModule
+        CommonModule,
+        TableModule
     ]
 })
 export class PagesModule { }
