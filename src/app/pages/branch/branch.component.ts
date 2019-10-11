@@ -39,4 +39,12 @@ export class BranchComponent implements OnInit {
 
   }
 
+  edit(branch: Branch) {
+    console.log(branch, 'edit object');
+  }
+
+  delete(branch: Branch) {
+    console.log(branch, 'delete object');
+  }
+
 }
