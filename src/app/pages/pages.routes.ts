@@ -10,6 +10,7 @@ import { RouterAuthGuard } from '../providers/guards/router.guard';
 import { ClientPageComponent } from './cliente/client-page/client-page.component';
 import { BranchComponent } from './branch/branch.component';
 import { BrandComponent } from './brand/brand.component';
+import { ColorComponent } from './color/color.component';
 
 const pagesRoutes: Routes = [
     {
@@ -21,6 +22,7 @@ const pagesRoutes: Routes = [
                 canActivate: [RouterAuthGuard] },
             { path: 'branch', component: BranchComponent, data: { titulo: 'Sucursal'}, canActivate: [RouterAuthGuard]},
             { path: 'brand', component: BrandComponent, data: { titulo: 'Marca'}, canActivate: [RouterAuthGuard]},
+            { path: 'color', component: ColorComponent, data: { titulo: 'Marca'}, canActivate: [RouterAuthGuard]},
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
         ]
     },
