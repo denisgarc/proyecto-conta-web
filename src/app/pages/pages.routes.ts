@@ -9,6 +9,7 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 import { RouterAuthGuard } from '../providers/guards/router.guard';
 import { ClientPageComponent } from './cliente/client-page/client-page.component';
 import { BranchComponent } from './branch/branch.component';
+import { BrandComponent } from './brand/brand.component';
 
 const pagesRoutes: Routes = [
     {
@@ -19,6 +20,7 @@ const pagesRoutes: Routes = [
             { path: 'account-settings', component: AccountSettingsComponent, data: { titulo: 'Ajustes del Tema' },
                 canActivate: [RouterAuthGuard] },
             { path: 'branch', component: BranchComponent, data: { titulo: 'Sucursal'}, canActivate: [RouterAuthGuard]},
+            { path: 'brand', component: BrandComponent, data: { titulo: 'Marca'}, canActivate: [RouterAuthGuard]},
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
         ]
     },

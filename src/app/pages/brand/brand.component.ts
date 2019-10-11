@@ -3,26 +3,31 @@ import { Brand } from 'src/app/models/Inventory/Brand';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { BranchMapper } from 'src/app/mappers/inventory/branch.mapper';
-import { BranchService } from 'src/app/services/inventory/branch.service';
+import { BrandMapper } from 'src/app/mappers/inventory/brand.mapper';
+import { BrandService } from 'src/app/services/inventory/brand.service';
 import { BasePage } from '../base-page';
 
 @Component({
   selector: 'app-brand',
   templateUrl: './brand.component.html',
-  styleUrls: ['./brand.component.css']
+  styleUrls: ['./brand.component.css'],
+  providers: [
+    MessageService,
+    BrandMapper,
+    BrandService
+  ]
 })
 export class BrandComponent extends BasePage implements OnInit {
 
   registerForm: FormGroup;
-  source: Array<Branch> = [];
-  clonedItem: { [s: number]: Branch; } = {};
+  source: Array<Brand> = [];
+  clonedItem: { [s: number]: Brand; } = {};
 
   constructor(private modalService: BsModalService,
               private formBuilder: FormBuilder,
               private messageService: MessageService,
-              private branchMapper: BranchMapper,
-              private branchService: BranchService) {
+              private brandMapper: BrandMapper,
+              private brandService: BrandService) {
     super();
   }
 
@@ -30,7 +35,6 @@ export class BrandComponent extends BasePage implements OnInit {
     this.registerForm = this.formBuilder.group({
       Codigo: [0, Validators.required],
       Nombre: ['', Validators.required],
-      NombreAbreviado: ['', Validators.required],
       Estado: [true, Validators.required]
     });
 
@@ -39,9 +43,9 @@ export class BrandComponent extends BasePage implements OnInit {
 
   getList(): void {
     this.showLoading();
-    this.branchService.Get()
+    this.brandService.Get()
       .subscribe(
-        (success: Array<Branch>) => {
+        (success: Array<Brand>) => {
           this.hideLoading();
           this.source = success;
         }, (error: any) => {
@@ -51,9 +55,9 @@ export class BrandComponent extends BasePage implements OnInit {
       );
   }
 
-  save(branch: Branch): void {
+  save(item: Brand): void {
     this.showLoading();
-    this.branchService.Save(branch)
+    this.brandService.Save(item)
       .subscribe(
         (success) => {
           this.hideLoading();
@@ -70,29 +74,29 @@ export class BrandComponent extends BasePage implements OnInit {
       );
   }
 
-  saveBranch(): void {
+  saveItem(): void {
     if (this.registerForm.invalid) {
       this.msg = 'Datos incompletos, debe llenar los campos obligatorios';
       return;
     }
-    this.save(this.branchMapper.transToService(this.registerForm.value));
+    this.save(this.brandMapper.transToService(this.registerForm.value));
   }
 
   mostrarModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
   }
 
-  onRowEditInit(branch: Branch) {
-    this.clonedItem[branch.Codigo] = {...branch};
+  onRowEditInit(item: Brand) {
+    this.clonedItem[item.Codigo] = {...item};
   }
 
-  onRowEditSave(branch: Branch) {
-    this.save(branch);
+  onRowEditSave(item: Brand) {
+    this.save(item);
   }
 
-  onRowEditCancel(branch: Branch, index: number) {
-    this.source[index] = this.clonedItem[branch.Codigo];
-    delete this.clonedItem[branch.Codigo];
+  onRowEditCancel(item: Brand, index: number) {
+    this.source[index] = this.clonedItem[item.Codigo];
+    delete this.clonedItem[item.Codigo];
   }
 
 }
