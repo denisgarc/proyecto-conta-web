@@ -5,27 +5,33 @@ import { Product } from 'src/app/models/Inventory/Product';
 export class ProductMapper {
     transFromJson(json: Array<any>): Array<Product> {
         let model: Array<Product> = [];
-        model = json;
-        // if (json) {
-        //     model = json.map((c: any) => new Color(
-        //         c.Codigo,
-        //         c.Nombre,
-        //         c.Estado
-        //     ));
-        // }
+        if (json) {
+            model = json.map((c: any) => new Product(
+                c.Codigo,
+                c.Marca,
+                c.Color,
+                c.Descripcion,
+                c.Tamano,
+                c.Estado
+            ));
+        }
+        console.log(model, 'objeto producto');
         return model;
     }
 
     transToService(json: any): Product {
         let model: Product;
-        model = json;
-        // if (json) {
-        //     model = new Color(
-        //         json.Codigo,
-        //         json.Nombre,
-        //         json.Estado
-        //     );
-        // }
+        if (json) {
+            model = new Product(
+                json.Codigo,
+                json.Marca,
+                json.Color,
+                json.Descripcion,
+                json.Tamano,
+                json.Estado
+            );
+        }
+        console.log(model, 'objeto producto guardar');
         return model;
     }
 }

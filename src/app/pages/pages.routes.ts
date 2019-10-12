@@ -11,6 +11,7 @@ import { ClientPageComponent } from './cliente/client-page/client-page.component
 import { BranchComponent } from './branch/branch.component';
 import { BrandComponent } from './brand/brand.component';
 import { ColorComponent } from './color/color.component';
+import { ProductComponent } from './product/product.component';
 
 const pagesRoutes: Routes = [
     {
@@ -23,6 +24,7 @@ const pagesRoutes: Routes = [
             { path: 'branch', component: BranchComponent, data: { titulo: 'Sucursal'}, canActivate: [RouterAuthGuard]},
             { path: 'brand', component: BrandComponent, data: { titulo: 'Marca'}, canActivate: [RouterAuthGuard]},
             { path: 'color', component: ColorComponent, data: { titulo: 'Marca'}, canActivate: [RouterAuthGuard]},
+            { path: 'product', component: ProductComponent, data: { titulo: 'Productos'}, canActivate: [RouterAuthGuard]},
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
         ]
     },

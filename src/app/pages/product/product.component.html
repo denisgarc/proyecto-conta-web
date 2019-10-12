@@ -1,0 +1,169 @@
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<ngx-loading [show]="loading"></ngx-loading>
+
+<div class="row">
+    <div class="col col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col col-md-12 text-center">
+                        <h1>Productos</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col col-md-12">
+                        <p-table [value]="source" dataKey="Codigo" editMode="row" [paginator]="true" [rows]="10" [first]="0" [lazy]="true" [responsive]="true" [totalRecords]="source.length">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Marca</th>
+                                    <th>Color</th>
+                                    <th>Descripción</th>
+                                    <th>Talla</th>
+                                    <th>Estado</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
+                                <tr [pEditableRow]="rowData">
+                                    <td>
+                                        {{ rowData.Codigo }}
+                                    </td>
+                                    <td>
+                                        <p-cellEditor>
+                                            <ng-template pTemplate="input">
+                                                <p-dropdown [options]="brands" [(ngModel)]="rowData.Marca" optionLabel="Nombre" styleClass="form-control"></p-dropdown>
+                                            </ng-template>
+                                            <ng-template pTemplate="output">
+                                                {{ rowData.Marca.Nombre }}
+                                            </ng-template>
+                                        </p-cellEditor>
+                                    </td>
+                                    <td>
+                                        <p-cellEditor>
+                                            <ng-template pTemplate="input">
+                                                <p-dropdown [options]="colors" [(ngModel)]="rowData.Color" optionLabel="Nombre" styleClass="form-control"></p-dropdown>
+                                            </ng-template>
+                                            <ng-template pTemplate="output">
+                                                {{ rowData.Color.Nombre }}
+                                            </ng-template>
+                                        </p-cellEditor>
+                                    </td>
+                                    <td>
+                                        <p-cellEditor>
+                                            <ng-template pTemplate="input">
+                                                <input class="form-control" type="text" [(ngModel)]="rowData.Descripcion">
+                                            </ng-template>
+                                            <ng-template pTemplate="output">
+                                                {{ rowData.Descripcion }}
+                                            </ng-template>
+                                        </p-cellEditor>
+                                    </td>
+                                    <td>
+                                        <p-cellEditor>
+                                            <ng-template pTemplate="input">
+                                                <input class="form-control" type="number" [(ngModel)]="rowData.Tamano">
+                                            </ng-template>
+                                            <ng-template pTemplate="output">
+                                                {{ rowData.Tamano }}
+                                            </ng-template>
+                                        </p-cellEditor>
+                                    </td>
+                                    <td>
+                                        <p-cellEditor>
+                                            <ng-template pTemplate="input">
+                                                <p-inputSwitch [(ngModel)]="rowData.Estado"></p-inputSwitch>
+                                            </ng-template>
+                                            <ng-template pTemplate="output">
+                                                <p-inputSwitch [(ngModel)]="rowData.Estado" disabled="true"></p-inputSwitch>
+                                            </ng-template>
+                                        </p-cellEditor>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <button *ngIf="!editing" pButton type="button" pInitEditableRow class="btn btn-xs btn-outline-warning" (click)="onRowEditInit(rowData)"><i class="fa fa-pencil"></i></button>
+                                        <button *ngIf="editing" pButton type="button" pSaveEditableRow class="btn btn-xs btn-outline-success" style="margin-right: .5em" (click)="onRowEditSave(rowData)"><i class="fa fa-check"></i></button>
+                                        <button *ngIf="editing" pButton type="button" pCancelEditableRow class="btn btn-xs btn-outline-danger" (click)="onRowEditCancel(rowData, ri)"><i class="fa fa-close"></i></button>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <button type="button" class="btn btn-outline-info btn-block" (click)="mostrarModal(addItem)"><i class="fa fa-plus"></i> Nuevo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #addItem>
+    <div class="row">
+        <div class="col col-md-12">
+            <form [formGroup]="registerForm" (ngSubmit)="saveItem()" novalidate>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">Agregar Marca</h3>
+                    </div>
+                    <div class="card-body">
+                        <h4 *ngIf="msg" class="alert alert-danger alert-dismissible">
+                            {{ msg }}
+                            <span id="remove" class="fa fa-times pull-right" (click)="dismiss()"></span>
+                        </h4>
+                        <div class="row">
+                            <div class="col col-md-12">
+                                <label>Código (*)</label>
+                                <input type="text" readonly="true" disabled="true" class="form-control" autocomplete="off" formControlName="Codigo">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-md-12">
+                                <label>Marca (*)</label>
+                                <p-dropdown [options]="brands" optionLabel="Nombre" autoDisplayFirst="false" placeholder="- Seleccione uno -" formControlName="Marca" styleClass="form-control"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-md-12">
+                                <label>Color (*)</label>
+                                <p-dropdown [options]="colors" optionLabel="Nombre" autoDisplayFirst="false" placeholder="- Seleccione uno -" formControlName="Color" styleClass="form-control"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-md-12">
+                                <label>Descripción (*)</label>
+                                <input type="text" class="form-control" autocomplete="off" formControlName="Descripcion">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-md-12">
+                                <label>Talla (*)</label>
+                                <input type="text" class="form-control" autocomplete="off" formControlName="Tamano">
+                            </div>
+                        </div>
+                        <div class="row" style="display: none">
+                            <div class="col col-md-12">
+                                <label>Activo (*)</label>
+                                <p-inputSwitch name="Estado" formControlName="Estado"></p-inputSwitch>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col col-xs-6 col-sm-4 col-md-3 col-lg-3">
+                                <button [disabled]="loading" class="btn btn-info btn-block text-uppercase btn-rounded" type="submit">Grabar</button>
+                            </div>
+                            <div class="col col-xs-6 col-sm-4 col-md-3 col-lg-3">
+                                <button (click)="dismissModal()" class="btn btn-danger btn-block text-uppercase btn-rounded" type="button">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-template>

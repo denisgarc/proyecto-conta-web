@@ -16,6 +16,8 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { ToastModule } from 'primeng/toast';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
+import { DropdownModule } from 'primeng/dropdown';
+
 
 // Rutas
 import { PAGES_ROUTES } from './pages.routes';
@@ -34,6 +36,7 @@ import { BranchComponent } from './branch/branch.component';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BrandComponent } from './brand/brand.component';
 import { ColorComponent } from './color/color.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
     declarations: [
@@ -49,7 +52,8 @@ import { ColorComponent } from './color/color.component';
         ClientPageComponent,
         BranchComponent,
         BrandComponent,
-        ColorComponent
+        ColorComponent,
+        ProductComponent
     ],
     exports: [
         DashboardComponent,
@@ -76,6 +80,7 @@ import { ColorComponent } from './color/color.component';
               secondaryColour: '#ffffff',
               tertiaryColour: '#ffffff'
           }),
+        DropdownModule
     ],
     providers: [
         BsModalService

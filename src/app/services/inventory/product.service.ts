@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ColorService {
+export class ProductService {
 
   constructor(private serviceProvider: HttpProviderService,
     private mapper: ProductMapper) { }
