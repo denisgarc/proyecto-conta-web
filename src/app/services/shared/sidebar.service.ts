@@ -7,19 +7,20 @@ export class SidebarService {
 
   menu: any = [
     {
-      titulo: 'Principal',
-      icono: 'mdi mdi-gauge',
+      titulo: 'Bodega',
+      icono: 'mdi mdi-cart-outline',
       submenu: [
-        { titulo: 'Dashboard', url: '/dashboard' },
+        { titulo: 'Bodega', url: '/cardex' }
+      ]
+    },
+    {
+      titulo: 'Maestros',
+      icono: 'mdi mdi-memory',
+      submenu: [
         { titulo: 'Sucursales', url: '/branch' },
         { titulo: 'Marcas', url: '/brand' },
         { titulo: 'Colores', url: '/color' },
         { titulo: 'Productos', url: '/product' },
-        { titulo: 'Bodega', url: '/cardex' }
-        // { titulo: 'Progress Bar', url: '/progress' },
-        // { titulo: 'Gráficas', url: '/graficas1' },
-        // { titulo: 'Promesas', url: '/promesas' },
-        // { titulo: 'Observable', url: '/observable' }
       ]
     }
   ];
