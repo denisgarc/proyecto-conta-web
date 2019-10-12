@@ -1,10 +1,10 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { Color } from 'src/app/models/Inventory/Color';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { ColorMapper } from 'src/app/mappers/inventory/color.mapper';
-import { ColorService } from 'src/app/services/inventory/color.service';
+import { ColorMapper } from 'src/app/mappers/inventory.mapper.index';
+import { ColorService } from 'src/app/services/inventory.service.index';
+import { Color } from '../../models/inventory.model.index';
 import { BasePage } from '../base-page';
 
 @Component({

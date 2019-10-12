@@ -1,10 +1,10 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { Branch } from 'src/app/models/Inventory/Branch';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { BranchMapper } from 'src/app/mappers/inventory/branch.mapper';
-import { BranchService } from 'src/app/services/inventory/branch.service';
+import { BranchMapper } from 'src/app/mappers/inventory.mapper.index';
+import { BranchService } from 'src/app/services/inventory.service.index';
+import { Branch } from '../../models/inventory.model.index';
 import { BasePage } from '../base-page';
 
 @Component({

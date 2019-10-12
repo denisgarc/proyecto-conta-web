@@ -1,10 +1,10 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { Brand } from 'src/app/models/Inventory/Brand';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { BrandMapper } from 'src/app/mappers/inventory/brand.mapper';
-import { BrandService } from 'src/app/services/inventory/brand.service';
+import { BrandMapper } from 'src/app/mappers/inventory.mapper.index';
+import { BrandService } from 'src/app/services/inventory.service.index';
+import { Brand } from '../../models/inventory.model.index';
 import { BasePage } from '../base-page';
 
 @Component({

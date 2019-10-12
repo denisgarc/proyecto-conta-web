@@ -2,16 +2,10 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { ProductMapper } from 'src/app/mappers/inventory/product.mapper';
-import { ProductService } from 'src/app/services/inventory/product.service';
 import { BasePage } from '../base-page';
-import { Product } from 'src/app/models/Inventory/Product';
-import { Brand } from 'src/app/models/Inventory/Brand';
-import { Color } from 'src/app/models/Inventory/Color';
-import { BrandMapper } from '../../mappers/inventory/brand.mapper';
-import { BrandService } from '../../services/inventory/brand.service';
-import { ColorMapper } from 'src/app/mappers/inventory/color.mapper';
-import { ColorService } from '../../services/inventory/color.service';
+import { BrandMapper, ColorMapper, ProductMapper } from 'src/app/mappers/inventory.mapper.index';
+import { BrandService, ColorService, ProductService } from 'src/app/services/inventory.service.index';
+import { Brand, Color, Product } from '../../models/inventory.model.index';
 
 @Component({
   selector: 'app-product',
