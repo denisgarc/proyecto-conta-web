@@ -37,6 +37,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BrandComponent } from './brand/brand.component';
 import { ColorComponent } from './color/color.component';
 import { ProductComponent } from './product/product.component';
+import { BodegaComponent } from './bodega/bodega.component';
 
 @NgModule({
     declarations: [
@@ -53,7 +54,8 @@ import { ProductComponent } from './product/product.component';
         BranchComponent,
         BrandComponent,
         ColorComponent,
-        ProductComponent
+        ProductComponent,
+        BodegaComponent
     ],
     exports: [
         DashboardComponent,

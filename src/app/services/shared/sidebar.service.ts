@@ -14,7 +14,8 @@ export class SidebarService {
         { titulo: 'Sucursales', url: '/branch' },
         { titulo: 'Marcas', url: '/brand' },
         { titulo: 'Colores', url: '/color' },
-        { titulo: 'Productos', url: '/product' }
+        { titulo: 'Productos', url: '/product' },
+        { titulo: 'Bodega', url: '/cardex' }
         // { titulo: 'Progress Bar', url: '/progress' },
         // { titulo: 'Gráficas', url: '/graficas1' },
         // { titulo: 'Promesas', url: '/promesas' },

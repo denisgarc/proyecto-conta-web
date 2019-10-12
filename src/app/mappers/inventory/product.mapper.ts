@@ -15,7 +15,6 @@ export class ProductMapper {
                 c.Estado
             ));
         }
-        console.log(model, 'objeto producto');
         return model;
     }
 
@@ -31,7 +30,6 @@ export class ProductMapper {
                 json.Estado
             );
         }
-        console.log(model, 'objeto producto guardar');
         return model;
     }
 }
