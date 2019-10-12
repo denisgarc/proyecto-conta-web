@@ -8,6 +8,7 @@ export class Product {
     Descripcion: string;
     Tamano: number;
     Estado: boolean;
+    Nombre: string;
 
     constructor(codigo: number,
                 marca: Brand,
@@ -21,5 +22,6 @@ export class Product {
         this.Descripcion = descripcion;
         this.Tamano = tamano;
         this.Estado = estado;
+        this.Nombre = descripcion + ' Marca ' + marca.Nombre + ' Color ' + color.Nombre + ' Talla ' + tamano;
     }
 }

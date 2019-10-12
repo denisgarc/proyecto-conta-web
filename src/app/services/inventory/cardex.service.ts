@@ -22,6 +22,26 @@ export class CardexService {
         );
   }
 
+  GetFiltered(startDate: Date, finishDate: Date, branch: number, product: number): Observable<Array<Cardex>> {
+    const param: Parameter[] = [
+        { name: 'startDate', value: startDate.toString() },
+        { name: 'finishDate', value: finishDate.toString() }
+    ];
+
+    if (branch != null) {
+        param.push({ name: 'branch', value: branch.toString() });
+    }
+
+    if (product != null) {
+        param.push({ name: 'product', value: product.toString() });
+    }
+
+    return this.serviceProvider.Get(Endpoint.BaseApi + Endpoint.Cardex.GetFiltered, param)
+        .pipe(
+          map(response => this.mapper.transFromJson(response))
+        );
+  }
+
   GetById(id: number): Observable<Array<Cardex>> {
     const param: Parameter[] = [
         { name: 'id', value: id.toString() }

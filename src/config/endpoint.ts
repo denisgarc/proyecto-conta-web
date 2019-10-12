@@ -25,6 +25,7 @@ export class Endpoint {
     static Cardex = {
         Get: 'cardex',
         GetById: 'cardex',
+        GetFiltered: 'cardex/filter',
         Save: 'cardex'
     };
     static Color = {

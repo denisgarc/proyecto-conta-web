@@ -10,7 +10,8 @@ export class SidebarService {
       titulo: 'Bodega',
       icono: 'mdi mdi-cart-outline',
       submenu: [
-        { titulo: 'Bodega', url: '/cardex' }
+        { titulo: 'Bodega', url: '/cardex' },
+        { titulo: 'Reporte de Exitencias', url: '/existence' }
       ]
     },
     {

@@ -58,7 +58,8 @@
                                                 <p-dropdown [options]="products" [(ngModel)]="rowData.Producto" optionLabel="Descripcion" styleClass="form-control"></p-dropdown>
                                             </ng-template>
                                             <ng-template pTemplate="output">
-                                                {{ rowData.Producto.Descripcion }}
+                                                <!-- {{ rowData.Producto.Descripcion }} -->
+                                                {{ rowData.Producto.Descripcion + ' Marca ' + rowData.Producto.Marca.Nombre + ' Color ' + rowData.Producto.Color.Nombre + ' Talla ' + rowData.Producto.Tamano }}
                                             </ng-template>
                                         </p-cellEditor>
                                     </td>
@@ -147,7 +148,7 @@
                         <div class="row">
                             <div class="col col-md-12">
                                 <label>Producto (*)</label>
-                                <p-dropdown [options]="products" optionLabel="Descripcion" autoDisplayFirst="false" placeholder="- Seleccione uno -" formControlName="Producto" styleClass="form-control"></p-dropdown>
+                                <p-dropdown [options]="products" optionLabel="Nombre" autoDisplayFirst="false" placeholder="- Seleccione uno -" formControlName="Producto" styleClass="form-control"></p-dropdown>
                             </div>
                         </div>
                         <div class="row" style="display: none">

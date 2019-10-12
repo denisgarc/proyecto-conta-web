@@ -8,6 +8,7 @@ import { BrandComponent } from './brand/brand.component';
 import { ColorComponent } from './color/color.component';
 import { ProductComponent } from './product/product.component';
 import { BodegaComponent } from './bodega/bodega.component';
+import { ExistenciaComponent } from './existencia/existencia.component';
 
 const pagesRoutes: Routes = [
     {
@@ -22,6 +23,7 @@ const pagesRoutes: Routes = [
             { path: 'color', component: ColorComponent, data: { titulo: 'Colores'}, canActivate: [RouterAuthGuard]},
             { path: 'product', component: ProductComponent, data: { titulo: 'Productos'}, canActivate: [RouterAuthGuard]},
             { path: 'cardex', component: BodegaComponent, data: { titulo: 'Bodega'}, canActivate: [RouterAuthGuard]},
+            { path: 'existence', component: ExistenciaComponent, data: { titulo: 'Existencias'}, canActivate: [RouterAuthGuard]},
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
         ]
     },

@@ -83,10 +83,12 @@ export class HttpProviderService {
 
     let query_string: string = '';
     params.forEach((param) => {
-      query_string += param.name + '=' + param.value;
+      query_string += param.name + '=' + param.value + '&';
     });
 
-    return endPoint + '?' + query_string;
+    console.log(query_string, 'query');
+
+    return endPoint + '?' + query_string.substr(0, query_string.length - 1);
   }
 
 }

@@ -16,7 +16,7 @@ export abstract class BaseComponent {
     }
 
     public showWarningToast(messageService: MessageService, message: string): void {
-        messageService.add({severity: 'warning', summary: '¡Advertencia!', detail: message});
+        messageService.add({severity: 'warn', summary: '¡Advertencia!', detail: message});
     }
 
     public showErrorToast(messageService: MessageService, message: string): void {

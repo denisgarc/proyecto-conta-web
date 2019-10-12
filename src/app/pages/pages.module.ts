@@ -31,6 +31,7 @@ import { BrandComponent } from './brand/brand.component';
 import { ColorComponent } from './color/color.component';
 import { ProductComponent } from './product/product.component';
 import { BodegaComponent } from './bodega/bodega.component';
+import { ExistenciaComponent } from './existencia/existencia.component';
 
 @NgModule({
     declarations: [
@@ -41,7 +42,8 @@ import { BodegaComponent } from './bodega/bodega.component';
         BrandComponent,
         ColorComponent,
         ProductComponent,
-        BodegaComponent
+        BodegaComponent,
+        ExistenciaComponent
     ],
     exports: [
         DashboardComponent,
