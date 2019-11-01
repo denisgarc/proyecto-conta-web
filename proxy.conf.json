@@ -1,0 +1,9 @@
+[{
+    "context": [
+        "/"
+    ],
+    "target": "https://api-conta-bodega.azurewebsites.net",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+}]
