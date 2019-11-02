@@ -13,8 +13,46 @@
             </div>
             <div class="card-body">
                 <div class="row">
+                    <form [formGroup]="filterForm" (ngSubmit)="filterInformation()" novalidate>
+                        <div class="row">
+                            <div class="col col-md-12">
+                                <div class="row">
+                                    <div class="col col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <label>Fecha Desde</label>
+                                        <input type="date" class="form-control" autocomplete="off" formControlName="startDate">
+                                    </div>
+                                    <div class="col col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <label>Fecha Hasta</label>
+                                        <input type="date" class="form-control" autocomplete="off" formControlName="finishDate">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <label>Sucursal</label>
+                                        <p-dropdown [options]="branches" optionLabel="Nombre" autoDisplayFirst="false" placeholder="- Seleccione uno -" formControlName="branch" styleClass="form-control"></p-dropdown>
+                                    </div>
+                                    <div class="col col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <label>Producto</label>
+                                        <p-dropdown [options]="operations" optionLabel="Nombre" autoDisplayFirst="false" placeholder="- Seleccione uno -" formControlName="operation" styleClass="form-control"></p-dropdown>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                                        <button [disabled]="loading" class="btn btn-info btn-block text-uppercase btn-rounded" type="submit">Mostrar</button>
+                                    </div>
+                                    <div class="col col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                                        <button (click)="clearFilters()" class="btn btn-danger btn-block text-uppercase btn-rounded" type="button">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <br>
+                <div class="row">
                     <div class="col col-md-12">
-                        <p-table [value]="source" dataKey="Id" editMode="row" [paginator]="true" [rows]="10" [first]="0" [lazy]="true" [responsive]="true" [totalRecords]="source.length">
+                        <p-table #dt [value]="source" dataKey="Id" editMode="row" [paginator]="true" [rows]="10" [first]="0" [lazy]="true" [responsive]="true" [totalRecords]="source.length">
                             <ng-template pTemplate="header">
                                 <tr>
                                     <th>Id</th>
@@ -120,7 +158,7 @@
             <form [formGroup]="registerForm" (ngSubmit)="saveItem()" novalidate>
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="text-center">Agregar Marca</h3>
+                        <h3 class="text-center">Agregar Transacción</h3>
                     </div>
                     <div class="card-body">
                         <h4 *ngIf="msg" class="alert alert-danger alert-dismissible">

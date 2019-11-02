@@ -45,6 +45,7 @@ export class HttpProviderService {
       this.http.post(endPoint, Body, Options)
         .subscribe(
           (success) => {
+            console.log(success, 'success http');
             if (success) {
               if (success['StatusCode'] === 200) {
                 observer.next(success['Result']);
@@ -58,6 +59,7 @@ export class HttpProviderService {
               observer.complete();
             }
           }, (error) => {
+            console.log(error, 'error http');
             observer.error(error);
             observer.complete();
           }

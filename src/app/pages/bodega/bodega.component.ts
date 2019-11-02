@@ -25,6 +25,7 @@ import { BasePage } from '../base-page';
 })
 export class BodegaComponent extends BasePage implements OnInit {
   registerForm: FormGroup;
+  filterForm: FormGroup;
   source: Array<Cardex> = [];
   clonedItem: { [s: number]: Cardex; } = {};
   branches: Array<Branch> = [];
@@ -43,6 +44,13 @@ export class BodegaComponent extends BasePage implements OnInit {
   }
 
   ngOnInit() {
+    this.filterForm = this.formBuilder.group({
+      startDate: [null, ],
+      finishDate: [null, ],
+      branch: [null, ],
+      operation: [null, ]
+    });
+
     this.registerForm = this.formBuilder.group({
       Id: [0, Validators.required],
       Sucursal: [null, Validators.required],
@@ -53,7 +61,7 @@ export class BodegaComponent extends BasePage implements OnInit {
       Descripcion: ['', Validators.required],
     });
 
-    this.getList();
+    // this.getList();
     this.getBranches();
     this.getOperations();
     this.getProducts();
@@ -71,6 +79,41 @@ export class BodegaComponent extends BasePage implements OnInit {
           this.showErrorToast(this.messageService, error.message);
         }
       );
+  }
+
+  getListFilter(filters: any): void {
+    this.showLoading();
+    this.cardexService.Get()
+      .subscribe(
+        (success: Array<Cardex>) => {
+          this.hideLoading();
+          this.source = this.filterData(success, filters);
+        }, (error: any) => {
+          this.hideLoading();
+          this.showErrorToast(this.messageService, error.message);
+        }
+      );
+  }
+
+  filterData(data: Array<Cardex>, filters: any): Array<Cardex> {
+    let result: Array<Cardex> = data;
+    if (filters['startDate'] !== null && filters['startDate'] !== undefined) {
+      result = result.filter(x => x.FechaOperacion >= filters['startDate']);
+    }
+
+    if (filters['finishDate'] !== null && filters['finishDate'] !== undefined) {
+      result = result.filter(x => x.FechaOperacion <= filters['finishDate']);
+    }
+
+    if (filters['branch'] !== null && filters['branch'] !== undefined) {
+      result = result.filter(x => x.Sucursal.Codigo === filters['branch'].Codigo);
+    }
+
+    if (filters['operation'] !== null && filters['operation'] !== undefined) {
+      result = result.filter(x => x.Operacion.Codigo === filters['operation'].Codigo);
+    }
+
+    return result;
   }
 
   getBranches(): void {
@@ -120,12 +163,18 @@ export class BodegaComponent extends BasePage implements OnInit {
     this.cardexService.Save(item)
       .subscribe(
         (success) => {
+          // console.log(success, 'respuesta');
           this.hideLoading();
-          this.dismissModal();
-          this.showSuccessToast(this.messageService, 'Operación finalizada con éxito');
+          if (success === null) {
+            this.dismissModal();
+            this.showSuccessToast(this.messageService, 'Operación finalizada con éxito');
 
-          // Recargamos registros
-          this.getList();
+            // Recargamos registros
+            this.getList();
+          } else {
+            this.showWarningToast(this.messageService, success);
+            this.msg = success;
+          }
 
         }, (error) => {
           this.hideLoading();
@@ -144,6 +193,7 @@ export class BodegaComponent extends BasePage implements OnInit {
   }
 
   mostrarModal(template: TemplateRef<any>) {
+    // this.registerForm.reset();
     this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
   }
 
@@ -158,6 +208,22 @@ export class BodegaComponent extends BasePage implements OnInit {
   onRowEditCancel(item: Cardex, index: number) {
     this.source[index] = this.clonedItem[item.Id];
     delete this.clonedItem[item.Id];
+  }
+
+  filterInformation(): void {
+    console.log(this.filterForm.value, 'model');
+    if (this.filterForm.invalid) {
+      this.showWarningToast(this.messageService, 'Los datos ingresados son inválidos');
+      return;
+    }
+
+    const filterModel = this.filterForm.value;
+    this.getListFilter(filterModel);
+  }
+
+  clearFilters(): void {
+    this.filterForm.reset();
+    this.source =  [];
   }
 
 }

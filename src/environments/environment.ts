@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // ServiceBase: 'http://serproinfordev8117.cloudapp.net:4450/'
-  ServiceBase: 'https://api-conta-bodega.azurewebsites.net/'
+  ServiceBase: 'http://localhost:61000//'
 };
 
 /*
